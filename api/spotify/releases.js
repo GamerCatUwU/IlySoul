@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     }
 
     const response = await fetch(
-      "https://api.spotify.com/v1/artists/1SoHACsKpxkyefWjj2xQOa/albums?include_groups=album,single,compilation&market=DE&limit=50",
+      "https://api.spotify.com/v1/artists/1SoHACsKpxkyefWjj2xQOa/albums?include_groups=album,single,compilation&market=DE&limit=10",
       {
         headers: {
           Authorization: `Bearer ${tokenData.access_token}`
