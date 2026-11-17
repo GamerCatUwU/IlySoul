@@ -1,37 +1,63 @@
-module.exports = async function handler(req, res) {
-  res.setHeader("Cache-Control", "s-maxage=1800, stale-while-revalidate=3600");
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  if (!clientId || !clientSecret) return res.status(500).json({ error: "Spotify credentials are not configured." });
+module.exports = async (req, res) => {
+  const fail = (stage, status, details) => {
+    return res.status(500).json({ stage, spotifyStatus: status, details });
+  };
+
   try {
-    const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+    const id = process.env.SPOTIFY_CLIENT_ID;
+    const secret = process.env.SPOTIFY_CLIENT_SECRET;
+
+    if (!id || !secret) {
+      return fail("environment", null, "Missing Spotify environment variables");
+    }
+
+    const credentials = Buffer.from(`${id}:${secret}`).toString("base64");
+
     const tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
-      headers: { Authorization: `Basic ${credentials}`, "Content-Type": "application/x-www-form-urlencoded" },
+      headers: {
+        Authorization: `Basic ${credentials}`,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       body: "grant_type=client_credentials"
     });
-    if (!tokenResponse.ok) return res.status(502).json({ error: "Spotify authentication failed." });
+
     const tokenData = await tokenResponse.json();
-    const releasesResponse = await fetch("https://api.spotify.com/v1/artists/1SoHACsKpxkyefWjj2xQOa/albums?include_groups=album,single,compilation&market=DE&limit=50", {
-      headers: { Authorization: `Bearer ${tokenData.access_token}` }
-    });
-    if (!releasesResponse.ok) return res.status(502).json({ error: "Spotify releases could not be fetched." });
-    const releasesData = await releasesResponse.json();
-    const unique = new Map();
-    for (const item of releasesData.items || []) if (!unique.has(item.id)) unique.set(item.id, item);
-    const items = [...unique.values()]
+
+    if (!tokenResponse.ok) {
+      return fail("authentication", tokenResponse.status, tokenData);
+    }
+
+    const response = await fetch(
+      "https://api.spotify.com/v1/artists/1SoHACsKpxkyefWjj2xQOa/albums?include_groups=album,single,compilation&market=DE&limit=50",
+      {
+        headers: {
+          Authorization: `Bearer ${tokenData.access_token}`
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return fail("releases", response.status, data);
+    }
+
+    const releases = data.items
       .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
       .slice(0, 6)
-      .map(item => ({
-        id: item.id,
-        name: item.name,
-        date: item.release_date,
-        dateLabel: item.release_date,
-        image: item.images?.[0]?.url || "",
-        url: item.external_urls?.spotify || `https://open.spotify.com/album/${item.id}`
+      .map(album => ({
+        id: album.id,
+        name: album.name,
+        date: album.release_date,
+        dateLabel: album.release_date,
+        image: album.images?.[0]?.url || "",
+        url: album.external_urls.spotify
       }));
-    return res.status(200).json({ items });
-  } catch {
-    return res.status(500).json({ error: "Unexpected error loading Spotify releases." });
+
+    res.setHeader("Cache-Control", "s-maxage=1800, stale-while-revalidate=3600");
+    return res.status(200).json({ releases });
+  } catch (error) {
+    return fail("server", null, error.message);
   }
 };
