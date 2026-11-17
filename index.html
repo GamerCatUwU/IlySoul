@@ -181,7 +181,7 @@ async function loadLatestReleases(){
     if(!response.ok) throw new Error('Release feed unavailable');
     const data=await response.json();
     if(!Array.isArray(data.releases)||!data.releases.length) throw new Error('No releases found');
-    grid.innerHTML=data.releases.map(item=>`
+    grid.innerHTML=data.releases.slice(0,3).map(item=>`
       <a class="release" href="${item.url}" target="_blank" rel="noopener noreferrer">
         <img src="${item.image||''}" alt="${escapeHtml(item.name)} artwork" loading="lazy">
         <div class="name">${escapeHtml(item.name)}</div>
