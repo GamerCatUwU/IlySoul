@@ -149,7 +149,7 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
 <footer><span>© ilySoul</span><span>stay real. &lt;3</span></footer>
 <script>
 
-const player=document.getElementById('topPlayer');
+const player=document.getElementById('music');
 const audio=new Audio();
 audio.preload='metadata';
 const toggles=document.querySelectorAll('.toggle');
@@ -188,7 +188,7 @@ function loadTrack(index,autoplay=false){
   trackName.textContent=tracks[currentTrack].name;
   progressFill.style.width='0%';
   timeDisplay.textContent='0:00 / 0:00';
-  player.querySelector('span').textContent=tracks[currentTrack].name+' — ilySoul';
+  player.querySelector('.window-head strong').textContent=tracks[currentTrack].name+' — ilySoul';
   if(autoplay) audio.play().catch(updateState);
   else updateState();
 }
@@ -265,7 +265,7 @@ document.querySelectorAll('.nav a').forEach(link=>link.addEventListener('click',
   document.querySelectorAll('.nav a').forEach(item=>item.classList.remove('active'));
   link.classList.add('active');
 }));
-
+async function loadLatestReleases(){
   const grid=document.getElementById('releaseGrid');
   try{
     const response=await fetch('/api/spotify/releases');
