@@ -216,6 +216,31 @@ function pauseVisual(){
     visualFrame.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');
   }
 }
+const heroLogo=document.querySelector('.hero-logo');
+let audioContext,analyser,audioSource,beatFrame;
+function startBeatVisual(){
+  if(!audioContext){
+    audioContext=new(window.AudioContext||window.webkitAudioContext)();
+    analyser=audioContext.createAnalyser();
+    analyser.fftSize=256;
+    audioSource=audioContext.createMediaElementSource(audio);
+    audioSource.connect(analyser);
+    analyser.connect(audioContext.destination);
+  }
+  audioContext.resume();
+  const data=new Uint8Array(analyser.frequencyBinCount);
+  cancelAnimationFrame(beatFrame);
+  function animateBeat(){
+    analyser.getByteFrequencyData(data);
+    const bass=data.slice(0,10).reduce((sum,value)=>sum+value,0)/10;
+    const pulse=1+Math.min(bass/255,1)*0.13;
+    heroLogo.style.transform=`rotate(-5deg) scale(${pulse})`;
+    heroLogo.style.textShadow=`0 0 ${3+bass/18}px #ff8be5,0 0 ${22+bass/5}px #d323b5,5px 7px 0 #681052`;
+    beatFrame=requestAnimationFrame(animateBeat);
+  }
+  animateBeat();
+}
+
 function formatTime(value){
   if(!Number.isFinite(value)) return '0:00';
   return Math.floor(value/60)+':'+String(Math.floor(value%60)).padStart(2,'0');
