@@ -252,13 +252,19 @@ const tracks=[
 let currentTrack=0;
 let shuffle=false;
 let repeat=false;
+
 function setVisual(index){
   const track=tracks[index];
+  if(track.videoId){
+    startVisual();
+    return;
+  }
   visualFrame.src='';
   visualFrame.style.display='none';
   visualImage.style.display='block';
-  visualImage.src='https://img.youtube.com/vi/'+(track.videoId||track.artId)+'/hqdefault.jpg';
+  visualImage.src='https://img.youtube.com/vi/'+track.artId+'/hqdefault.jpg';
 }
+
 
 function startVisual(){
   const track=tracks[currentTrack];
@@ -349,7 +355,7 @@ buttons[1].addEventListener('click',()=>{
 buttons[3].addEventListener('click',nextTrack);
 
 buttons[4].addEventListener('click',()=>{
-  repeat=!repeat;
+  audio.addEventListener('pause',()=>{updateState();});
   audio.loop=repeat;
   buttons[4].style.opacity=repeat?'1':'.55';
 });
