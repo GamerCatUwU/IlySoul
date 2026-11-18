@@ -30,4 +30,7 @@ module.exports = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
+
+  res.setHeader("Cache-Control", `s-maxage=${cacheSeconds}, stale-while-revalidate=3600`);
+  return res.status(200).json({ releases });
 };

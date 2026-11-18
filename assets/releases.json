@@ -1,0 +1,28 @@
+{
+  "releases": [
+    {
+      "id": "0GRgtl98DA7nxJhfFq3ayF",
+      "name": "Hinata",
+      "date": "2026-11-13",
+      "dateLabel": "2026-11-13",
+      "image": "https://i.scdn.co/image/ab67616d00001e02396cd099ba3739bfdded44a3",
+      "url": "https://open.spotify.com/album/0GRgtl98DA7nxJhfFq3ayF"
+    },
+    {
+      "id": "24bsRdhrQ9tsNLHlxWwMyE",
+      "name": "Get Back!",
+      "date": "2026-10-09",
+      "dateLabel": "2026-10-09",
+      "image": "https://i.scdn.co/image/ab67616d00001e021e7d076af580c857d26be11d",
+      "url": "https://open.spotify.com/album/24bsRdhrQ9tsNLHlxWwMyE"
+    },
+    {
+      "id": "5cWOmpwCVan8LssR0xky2G",
+      "name": "Nasty!",
+      "date": "2026-09-25",
+      "dateLabel": "2026-09-25",
+      "image": "https://i.scdn.co/image/ab67616d00001e02f96ee0c6220b9f7092c0cc0c",
+      "url": "https://open.spotify.com/album/5cWOmpwCVan8LssR0xky2G"
+    }
+  ]
+}
