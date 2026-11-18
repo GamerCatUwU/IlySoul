@@ -174,33 +174,7 @@ main{min-height:1800px}}
   background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0px,rgba(0,0,0,.22) 1px,transparent 1px,transparent 3px);
   mix-blend-mode:screen;
 }
-
-.hero-art:before{
-  content:"";
-  position:absolute;
-  left:2%;
-  top:8%;
-  width:68%;
-  height:72%;
-  z-index:1;
-  opacity:.65;
-  background:
-    repeating-linear-gradient(150deg,transparent 0 15px,rgba(255,235,250,.55) 16px 18px,transparent 19px 29px),
-    radial-gradient(ellipse at 65% 40%,rgba(255,240,250,.9),rgba(190,160,190,.4) 45%,transparent 75%);
-  clip-path:polygon(0 55%,15% 37%,35% 23%,55% 15%,77% 17%,100% 32%,84% 40%,96% 50%,78% 52%,90% 64%,69% 62%,78% 76%,56% 68%,58% 86%,38% 71%,29% 87%,17% 68%,5% 76%);
-  filter:blur(1px);
-  transform:rotate(-9deg);
-  animation:wingFloat 12s ease-in-out infinite;
-  pointer-events:none;
-}
-.hero-art:after{z-index:0}
-@keyframes wingFloat{
-  0%,100%{transform:rotate(-9deg) translateY(0)}
-  50%{transform:rotate(-7deg) translateY(-6px)}
-}
-@media(max-width:620px){
   .hero-art:before{display:none}
-}
 }
 @media(max-width:620px){
   .hero-art:before{display:none}
