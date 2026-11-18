@@ -120,6 +120,41 @@ main{min-height:1800px}}
  .releases{top:1010px;bottom:auto;left:4%;width:92%}
  .visual-bg iframe,.visual-bg img{transform:scale(1.8)}
 }
+.visual-bg{
+  background-color:#080408;
+  background-image:
+    radial-gradient(1px 1px at 8% 18%,#ff79df 99%,transparent),
+    radial-gradient(1px 1px at 23% 72%,#f04acb 99%,transparent),
+    radial-gradient(1px 1px at 47% 31%,#ffb4ec 99%,transparent),
+    radial-gradient(1px 1px at 68% 83%,#f04acb 99%,transparent),
+    radial-gradient(1px 1px at 86% 24%,#ff79df 99%,transparent),
+    radial-gradient(1px 1px at 94% 62%,#f04acb 99%,transparent);
+  background-size:180px 180px;
+  animation:starDrift 35s linear infinite;
+}
+.visual-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(255,120,220,.055) 3px);
+  opacity:.7;
+}
+@keyframes starDrift{
+  from{background-position:0 0}
+  to{background-position:180px 180px}
+}
+.crt-overlay{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:.2;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0px,rgba(0,0,0,.22) 1px,transparent 1px,transparent 3px);
+  mix-blend-mode:screen;
+}
+
 </style>
 </head>
 <body>
