@@ -231,7 +231,27 @@ const tracks=[
 let currentTrack=0;
 let shuffle=false;
 let repeat=false;
+function setVisual(index){
+  const track=tracks[index];
+  visualFrame.src='';
+  visualFrame.style.display='none';
+  visualImage.style.display='block';
+  visualImage.src='https://img.youtube.com/vi/'+(track.videoId||track.artId)+'/hqdefault.jpg';
+}
 
+function startVisual(){
+  const track=tracks[currentTrack];
+  if(!track.videoId)return;
+  visualImage.style.display='none';
+  visualFrame.style.display='block';
+  visualFrame.src='https://www.youtube-nocookie.com/embed/'+track.videoId+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+track.videoId+'&playsinline=1&modestbranding=1&rel=0';
+}
+
+function pauseVisual(){
+  if(visualFrame.contentWindow){
+    visualFrame.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');
+  }
+}
 function formatTime(value){
   if(!Number.isFinite(value)) return '0:00';
   return Math.floor(value/60)+':'+String(Math.floor(value%60)).padStart(2,'0');
