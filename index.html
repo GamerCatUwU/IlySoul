@@ -196,6 +196,140 @@ const tracks=[
 let currentTrack=0;
 let shuffle=false;
 let repeat=false;
+    <div class="about-body"><img src="data:image/jpeg;base64,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￼￼
+  </section>
+  <section class="releases">
+    <div class="section-head">✦ Latest Releases <a class="view" href="#music">View all →</a></div>
+    <div class="release-grid" id="releaseGrid">
+      <div class="release-loading">Loading latest releases...</div>
+    </div>
+  </section>
+  <section class="window eye-window"><div class="window-head"><div class="controls"><button aria-label="Minimize">−</button><button aria-label="Maximize">□</button><button aria-label="Close">×</button></div></div><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCADIAcIDASIAAhEBAxEB/8QAHAAAAAcBAQAAAAAAAAAAAAAAAAIDBAUGBwEI/8QAWRAAAgEDAgMGAwMIBQULCQkAAQIDAAQRBSEGEjEHEyJBUWEUcYEykaEIFSNCUrHB0RYkYpTSFzNyhPAYNDU2N5KTorKz4SUoQ0ZTdIOj8UVUVldkZXWCw//EABoBAAIDAQEAAAAAAAAAAAAAAAIDAAEEBQb/xAAyEQABBAAFAgUCBgIDAQAAAAABAAIDEQQSITFBE1EFImFxkRSxFSMyUoGhQsEkNPDR/9oADAMBAAIRAxEAPwDymnGXZ9PKIouzKEuTgKt453+6pPRtT7PtUkl7zs8ijVCI1AvGLO5OygY9MknyArNrCzmtuH7rWg4TlYW8e25Zhk4+Q86tnCPwWj8Nza3MT30aGR2PkDsqD3P2jWxkriRdLvQ46VzhnArc6BSercU9nOlarLZDs1tpDEeUsb1+v3UgvGPZ68CzHswt0iLFO8N6+M4zjOKzeWSfUdQklbxyyMXYsce9OI9PuY/h3WGF++jJUNKD9Tvt9aD6h1mqWf8AEZS4loFewV7PG3Zz5dmVt7H41/5VyXjLs/REkHZpZ4cbD49z9+BWaskkMwDbNn1zQMnPIWk3JO/lVfUP9EB8TlOlD4C0c8ccAr9rswsweo/rklF/pzwAT/yZWf8AfH/lVCZdOaaIJPcBCPGXUEqfYA70hOIFuGEEjPH+qzDBqvqH+ih8RmHb4C0pON+z0oWPZhZsPT46Qfwon9O+zsH/AJMLP++yfyrM8FmwPP1rquyn+YqfUP8ARD+JyngfAWmNx52eEYHZdaf3x/5UX+nPZ9/+WFr/AHyT+VZv38m4yv8AzRXY55YgRG5XPpVdd3or/E5b1r4C0f8Apx2enAXswtgen+/ZP5V0cb9no69mFv8A32T+VZwLmbn5xK4b1BxSgv7sHIupc+7VfXf6Ih4nIO3wForcZdnxQMvZjbgHOD8bJ9fKpTR9W4E1XLL2c26ZYJGvxj5kYnoNug8zWW213fyTrBFKzM+UC4DfarbeCuHPh5Vlk5XS2RYlx5t1Yj67U+F7nnhbMJi5Jn7Ch6BWaDh3s9FvG8nAloObHN/WGIX61nFzxb2dfEukPZlacoJ5Sb1wSudjjH+2atfHt4w0VtJhlEclwP0jHw8kY3J+XlisVld+9dWAPNjGPJQMY/CmTPymgFqxmLcwhrGivYK5PxhwGrbdmdmPY3rn+FBOOezwnB7L7TPteyfyqkNAZR4QExkliaFhpy3due5eUT8xLkgBAuPX1zSBO+9AFzzjZrAAHwFoMfFnAE8hVOzG023OL1/5VcOGdM4H4hgN0ezu3trVEZnmN07KCoBwNtz1zjpWQ6NHpkeoyRane8tsjDn7oEtKAfsr6Vomodosk2hjQeHtFe0DgRI855PD5cq+4HWnseN3rdhcUHW6UD0FBPp5uz2313T9Nj7OraZrlBJIfiX/AESHck+uFGasvC+idm+v8PLq13wLY6fFIx7kPcsS6Dbm9s1k9lacU8Q3cuoW17Hbz6jJ+b+WNTl49ucgjOEAAyfpWm6V2aQwwwrq2sXepRxKFWA+CMAeRHU0cb8x/Ton4eZ8jyRGK9gpS60jsVt8qdF0xnH6sUrufuFR66N2ZzkmDga4K￼￼
+  <div class="mini-note"><div class="note-top"><span>ilySoul</span><span>♥</span></div><span class="cursor">▏</span></div>
+</main>
+</div>
+<footer><span>© ilySoul</span><span>stay real. &lt;3</span></footer>
+<script>
+
+const player=document.getElementById('music');
+const audio=new Audio();
+audio.preload='metadata';
+const toggles=document.querySelectorAll('.toggle');
+const trackName=document.querySelector('.track-name');
+const progress=document.getElementById('progress');
+const progressFill=progress.querySelector('.progress-fill');
+const timeDisplay=progress.nextElementSibling;
+const controls=document.querySelector('.controls-row');
+const buttons=controls.querySelectorAll('button');
+const visualFrame=document.getElementById('visualFrame');
+const visualImage=document.getElementById('visualImage');
+const tracks=[
+  {name:'Hinata',src:'music/Hinata.mp3',videoId:'oMV-YcEU9NQ'},
+  {name:'Get Back!',src:'music/Get%20Back!.mp3',videoId:'-76ZZVaJGvw'},
+  {name:'Nasty!',src:'music/Nasty!.mp3',videoId:null,artId:'uS2tCcRcJ5E'}
+];
+let currentTrack=0;
+let shuffle=false;
+let repeat=false;
+
+function formatTime(value){
+  if(!Number.isFinite(value)) return '0:00';
+  return Math.floor(value/60)+':'+String(Math.floor(value%60)).padStart(2,'0');
+}
+
+function updateState(){
+  const playing=!audio.paused;
+  player.classList.toggle('paused',!playing);
+  toggles.forEach(button=>{
+    button.textContent=playing?'Ⅱ':'▶';
+    button.setAttribute('aria-label',playing?'Pause':'Play');
+  });
+}
+
+function loadTrack(index,autoplay=false){
+  currentTrack=(index+tracks.length)%tracks.length;
+  audio.src=tracks[currentTrack].src;
+  trackName.textContent=tracks[currentTrack].name;
+  progressFill.style.width='0%';
+  timeDisplay.textContent='0:00 / 0:00';
+  player.querySelector('.window-head strong').textContent=tracks[currentTrack].name+' — ilySoul';
+  if(autoplay) audio.play().catch(updateState);
+  else updateState();
+}
+
+function nextTrack(){
+  let next=currentTrack+1;
+  if(shuffle&&tracks.length>1){
+    do{next=Math.floor(Math.random()*tracks.length)}while(next===currentTrack);
+  }
+  loadTrack(next,true);
+}
+
+toggles.forEach(button=>button.addEventListener('click',()=>{
+  if(audio.paused) audio.play().catch(updateState);
+  else audio.pause();
+}));
+
+buttons[0].addEventListener('click',()=>{
+  shuffle=!shuffle;
+  buttons[0].style.opacity=shuffle?'1':'.55';
+});
+
+buttons[1].addEventListener('click',()=>{
+  if(audio.currentTime>3) audio.currentTime=0;
+  else loadTrack(currentTrack-1,true);
+});
+
+buttons[3].addEventListener('click',nextTrack);
+
+buttons[4].addEventListener('click',()=>{
+  repeat=!repeat;
+  audio.loop=repeat;
+  buttons[4].style.opacity=repeat?'1':'.55';
+});
+
+audio.addEventListener('play',updateState);
+audio.addEventListener('pause',updateState);
+audio.addEventListener('ended',()=>{
+  if(!repeat) nextTrack();
+});
+
+audio.addEventListener('loadedmetadata',()=>{
+  timeDisplay.textContent='0:00 / '+formatTime(audio.duration);
+});
+
+audio.addEventListener('timeupdate',()=>{
+  progressFill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeDisplay.textContent=formatTime(audio.currentTime)+' / '+formatTime(audio.duration);
+});
+
+progress.addEventListener('click',event=>{
+  if(!Number.isFinite(audio.duration)) return;
+  const rect=progress.getBoundingClientRect();
+  audio.currentTime=Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width))*audio.duration;
+});
+
+loadTrack(0);
+
+document.getElementById('heart').addEventListener('click',event=>{
+  const liked=event.currentTarget.textContent==='♥';
+  event.currentTarget.textContent=liked?'♡':'♥';
+  event.currentTarget.style.color=liked?'':'#ff79df';
+});
+
+document.querySelectorAll('.controls button').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const window=button.closest('.window');
+    if(button.getAttribute('aria-label')==='Close') window.style.display='none';
+    if(button.getAttribute('aria-label')==='Minimize') window.classList.toggle('minimized');
+  });
+});
+
+document.querySelectorAll('.nav a').forEach(link=>link.addEventListener('click',()=>{
+  document.querySelectorAll('.nav a').forEach(item=>item.classList.remove('active'));
+  link.classList.add('active');
+}));
+async function loadLatestReleases(){
 
 function formatTime(value){
   if(!Number.isFinite(value)) return '0:00';
