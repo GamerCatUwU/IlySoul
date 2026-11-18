@@ -269,6 +269,7 @@ function updateState(){
 function loadTrack(index,autoplay=false){
   currentTrack=(index+tracks.length)%tracks.length;
   audio.src=tracks[currentTrack].src;
+ setVisual(currentTrack);
   trackName.textContent=tracks[currentTrack].name;
   progressFill.style.width='0%';
   timeDisplay.textContent='0:00 / 0:00';
