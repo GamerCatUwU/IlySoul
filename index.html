@@ -12,7 +12,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:#f7d9f1;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E")}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.04;background-image:url('assets/crt-grain.png')}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit}
 .topbar{height:58px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:28px;padding:0 22px;position:relative;z-index:5;background:#080408e8}
@@ -26,10 +26,10 @@ button{font:inherit;color:inherit}
 .top-player button{border:0;background:none;color:var(--pink);font-size:18px;cursor:pointer}
 .top-player span{font-size:13px;white-space:nowrap}
 .equalizer{margin-left:auto;display:flex;align-items:end;gap:3px;height:22px}
-.equalizer i{width:3px;background:var(--pink);height:35%;animation:bars .7s infinite alternate}
-.equalizer i:nth-child(2){height:80%;animation-delay:.2s}.equalizer i:nth-child(3){height:55%;animation-delay:.4s}.equalizer i:nth-child(4){height:100%;animation-delay:.1s}.equalizer i:nth-child(5){height:65%;animation-delay:.3s}
-.paused .equalizer i{animation-play-state:paused;height:3px}
-@keyframes bars{to{height:100%}}
+.equalizer i{--rest:.35;width:3px;height:100%;background:var(--pink);transform-origin:bottom;transform:scaleY(var(--rest));animation:bars .7s infinite alternate}
+.equalizer i:nth-child(2){--rest:.8;animation-delay:.2s}.equalizer i:nth-child(3){--rest:.55;animation-delay:.4s}.equalizer i:nth-child(4){--rest:1;animation-delay:.1s}.equalizer i:nth-child(5){--rest:.65;animation-delay:.3s}
+.paused .equalizer i{animation:none;transform:scaleY(.13636)}
+@keyframes bars{to{transform:scaleY(1)}}
 .layout{display:grid;grid-template-columns:90px 1fr;min-height:calc(100vh - 58px)}
 .social-rail{border-right:1px solid var(--line);display:flex;align-items:center;flex-direction:column;gap:23px;padding-top:36px;position:relative;z-index:2}
 .social-rail a{width:34px;height:34px;display:grid;place-items:center;color:var(--pink);transition:.2s}
@@ -40,12 +40,12 @@ main{position:relative;min-width:0;overflow:hidden;background:#080408}
 .hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 56%,#080408 98%),linear-gradient(90deg,#080408,transparent 18%,transparent 84%,#080408),repeating-linear-gradient(180deg,transparent 0 2px,rgba(8,4,8,.28) 2px 3px)}
 @media(width > 620px){
  .hero-art{overflow:hidden;background:#080408 url('assets/desktop-arch.webp') center 35% / cover no-repeat}
- .hero-art:before{content:"";position:absolute;inset:-50% 0;background:linear-gradient(180deg,transparent 46%,rgba(255,121,223,.065) 50%,transparent 54%);animation:crtSweep 12s linear infinite}
+ .hero-art:before{content:"";position:absolute;inset:0 0 auto;height:16%;background:linear-gradient(180deg,transparent,rgba(255,121,223,.065),transparent);animation:crtSweep 12s linear infinite}
 }
-@keyframes crtSweep{from{transform:translateY(-55%)}to{transform:translateY(55%)}}
+@keyframes crtSweep{from{transform:translateY(-425%)}to{transform:translateY(950%)}}
 @media(prefers-reduced-motion:reduce){.hero-art:before{animation:none;opacity:0}}
-.hero-logo{position:absolute;top:8%;left:8%;z-index:1;font-family:cursive;font-weight:900;font-style:italic;font-size:clamp(70px,10vw,150px);line-height:.85;letter-spacing:-.1em;color:#f34bd0;text-shadow:0 0 calc(3px + 8px * var(--beat,0)) #ff8be5,0 0 calc(22px + 20px * var(--beat,0)) #d323b5,5px 7px 0 #681052;transform:rotate(-5deg) scale(calc(1 + .12 * var(--beat,0)));user-select:none}
-@media(prefers-reduced-motion:reduce){.hero-logo{--beat:0!important}}
+.hero-logo{position:absolute;top:8%;left:8%;z-index:1;font-family:cursive;font-weight:900;font-style:italic;font-size:clamp(70px,10vw,150px);line-height:.85;letter-spacing:-.1em;color:#f34bd0;text-shadow:0 0 3px #ff8be5,0 0 22px #d323b5,5px 7px 0 #681052;transform:rotate(-5deg);will-change:scale;user-select:none}
+@media(prefers-reduced-motion:reduce){.hero-logo{scale:1!important}}
 .hero-logo:after{content:"✶";font-family:serif;font-size:.42em;vertical-align:top;margin-left:.16em}
 .spark{position:absolute;color:var(--pink);font-size:42px;text-shadow:0 0 15px var(--pink);z-index:1}
 .spark.one{top:6%;left:40%}.spark.two{top:31%;right:5%;font-size:34px}.spark.three{bottom:25%;left:39%;font-size:56px}
@@ -62,7 +62,7 @@ main{position:relative;min-width:0;overflow:hidden;background:#080408}
 .artist{font-size:13px;color:#d3a5ca;margin-top:4px}
 .track-progress{display:flex;align-items:center;gap:10px;margin:16px 0 13px;font-size:12px;color:#d8b4d1}
 .progress{height:6px;background:#40203a;flex:1;cursor:pointer}
-.progress-fill{height:100%;width:0%;background:var(--pink);box-shadow:0 0 8px var(--pink)}
+.progress-fill{height:100%;transform:scaleX(0);transform-origin:left;background:var(--pink);box-shadow:0 0 8px var(--pink)}
 .controls-row{display:flex;justify-content:space-around;align-items:center;color:var(--pink);font-size:20px}
 .controls-row button{border:0;background:none;cursor:pointer;color:var(--pink);font-size:19px}
 .controls-row .main-play{background:var(--pink);color:#170714;width:39px;height:39px;border-radius:50%;font-size:17px}
@@ -98,7 +98,7 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
  .topbar{height:auto;min-height:58px;flex-wrap:wrap;padding:10px 13px;gap:10px}
  .brand{font-size:21px}.nav{order:3;width:100%;height:34px;justify-content:space-between;gap:8px;font-size:13px}
  .nav a.active:after{bottom:0}.top-player{margin-left:auto;min-width:0;width:190px;height:34px}.top-player span{font-size:11px}
- .layout{grid-template-columns:42px 1fr;min-height:calc(100svh - 102px)}
+ .layout{grid-template-columns:var(--rail-width) 1fr;min-height:calc(100svh - 102px)}
  .social-rail{gap:17px;padding-top:25px}.social-rail a{width:28px;height:28px}.social-rail svg{width:23px;height:23px}
  .hero-logo{top:6%;left:6%;font-size:clamp(58px,17vw,95px)}
  .spark.one{top:4%;left:62%}.spark.two{top:28%;right:4%}.spark.three{display:none}
@@ -109,10 +109,9 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
  .mini-note{right:5%;bottom:20%;width:140px;height:58px;padding:7px 9px}.mini-note .note-top{font-size:12px}
  footer{padding:0 12px;font-size:10px;height:42px}
 }
-.crt-overlay{display:none}
 .visual-bg{position:absolute;inset:0;z-index:1;overflow:clip;pointer-events:none}
 .visual-bg:before{
- content:"";position:absolute;inset:0;z-index:1;opacity:.18;
+ content:"";position:absolute;inset:-160px 0 0 -160px;z-index:1;opacity:.18;
  background-image:
   radial-gradient(2px 2px at 8% 18%,#ff79df 99%,transparent),
   radial-gradient(2px 2px at 23% 72%,#f04acb 99%,transparent),
@@ -124,32 +123,38 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
 }
 .visual-media{display:none}
 @media(max-width:620px){
+ :root{--rail-width:42px}
  main{min-height:1800px;overflow:visible}
  .about-window{top:250px;right:4%;width:90%}
  .player-window{top:500px;left:4%;width:92%}
  .eye-window{top:800px;right:5%;bottom:auto;width:90%;opacity:.82}
  .releases{top:1010px;bottom:auto;left:4%;width:92%}
- .visual-bg{z-index:0;background:#080408}
- .visual-media{display:block;position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden}
+ /* Use the large viewport so the browser toolbar cannot resize the video on scroll. */
+ .visual-bg{position:fixed;inset:0 0 auto var(--rail-width);height:100vh;height:100lvh;z-index:0;background:#080408}
+ .visual-media{display:block;position:absolute;inset:0}
  /* The square pictures sit inside 16:9 frames. Size the square to cover the viewport. */
  .visual-media iframe,.visual-media img{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:max(177.778%,177.778vh);width:max(177.778%,177.778dvh);
-  height:auto;aspect-ratio:16 / 9;border:0;filter:saturate(.72) contrast(1.12)
+  width:max(177.778%,177.778vh);width:max(177.778%,177.778lvh);
+  height:auto;aspect-ratio:16 / 9;border:0
  }
  .visual-media iframe{opacity:0}
- .visual-media img{object-fit:cover;opacity:.62;transition:opacity .7s}
+ .visual-media img{object-fit:cover;opacity:.62;filter:saturate(.72) contrast(1.12);transition:opacity .7s}
  .visual-media.has-video iframe{opacity:1}
  .visual-media.has-video img{opacity:0}
  .visual-bg:before{opacity:.9}
- .visual-bg:after{content:"";position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(255,120,220,.09) 3px)}
- .hero-art:after{background:linear-gradient(180deg,rgba(8,4,8,.24),rgba(8,4,8,.08) 38%,#080408 100%),linear-gradient(90deg,#080408,transparent 17%,transparent 82%,#080408)}
- .crt-overlay{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0px,rgba(0,0,0,.22) 1px,transparent 1px,transparent 3px);mix-blend-mode:screen}
- .crt-overlay:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.52) 100%);box-shadow:inset 0 0 90px rgba(0,0,0,.6)}
+ .visual-bg:after{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:
+   linear-gradient(180deg,rgba(8,4,8,.24),rgba(8,4,8,.08) 38%,rgba(8,4,8,.62)),
+   linear-gradient(90deg,#080408,transparent 17%,transparent 82%,#080408),
+   repeating-linear-gradient(0deg,transparent 0 2px,rgba(255,120,220,.09) 3px)
+ }
+ .hero-art{display:none}
 }
-@keyframes starDrift{
- from{background-position:0 0}
- to{background-position:160px 160px}
+@keyframes starDrift{to{transform:translate(160px,160px)}}
+@media(prefers-reduced-motion:reduce){
+ .visual-bg:before,.equalizer i{animation:none}
 }
 </style>
 </head>
@@ -159,7 +164,7 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
   <nav class="nav" aria-label="Main navigation">
     <a class="active" href="#home">Home</a><a href="#music">Music</a><a href="#about">About</a><a href="#links">Links</a>
   </nav>
-  <div class="top-player" id="topPlayer"><button class="toggle" aria-label="Play or pause">Ⅱ</button><span>Goth Girl — ilySoul</span><div class="equalizer"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="top-player paused" id="topPlayer"><button class="toggle" aria-label="Play or pause">Ⅱ</button><span>Goth Girl — ilySoul</span><div class="equalizer"><i></i><i></i><i></i><i></i><i></i></div></div>
 </header>
 <div class="layout">
 
@@ -183,7 +188,6 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
     </div>
   </div>
   <div class="hero-art"></div>
-  <div class="crt-overlay"></div>
   <div class="hero-logo">ilySoul</div>
   <span class="spark one">✶</span><span class="spark two">☆</span><span class="spark three">♡</span>
   <section class="window player-window" id="music">
@@ -209,6 +213,7 @@ footer{height:49px;border-top:1px solid var(--line);display:flex;align-items:cen
 <script>
 
 const player=document.getElementById('music');
+const topPlayer=document.getElementById('topPlayer');
 const audio=new Audio();
 audio.preload='metadata';
 const toggles=document.querySelectorAll('.toggle');
@@ -312,6 +317,7 @@ function setVisualPlayback(playing){
 const heroLogo=document.querySelector('.hero-logo');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 let audioContext,analyser,beatFrame;
+let logoVisible=false;
 
 function prepareBeatAudio(){
   const AudioContext=window.AudioContext||window.webkitAudioContext;
@@ -344,16 +350,16 @@ function playTrack(){
 function stopBeatVisual(){
   cancelAnimationFrame(beatFrame);
   beatFrame=undefined;
-  heroLogo.style.removeProperty('--beat');
+  heroLogo.style.removeProperty('scale');
 }
 
 function startBeatVisual(){
-  if(!analyser || reducedMotion.matches || beatFrame!==undefined) return;
+  if(!analyser || !logoVisible || reducedMotion.matches || beatFrame!==undefined) return;
   const data=new Uint8Array(analyser.frequencyBinCount);
   const binWidth=audioContext.sampleRate/analyser.fftSize;
   const firstBin=Math.ceil(35/binWidth);
   const lastBin=Math.floor(145/binWidth);
-  let previousTime,average,pulse=0;
+  let previousTime,average,pulse=0,previousScale=1;
 
   function animateBeat(time){
     const elapsed=previousTime===undefined?0:Math.min((time-previousTime)/1000,.1);
@@ -368,11 +374,21 @@ function startBeatVisual(){
     const attack=Math.max(0,(bass-average-.04)*7);
     pulse=Math.min(1,Math.max(attack,pulse*Math.exp(-elapsed/.12)));
     average+=(bass-average)*(1-Math.exp(-elapsed/.2));
-    heroLogo.style.setProperty('--beat',pulse.toFixed(3));
+    const scale=Math.round((1+.12*pulse)*1000)/1000;
+    if(scale!==previousScale){
+      heroLogo.style.scale=scale;
+      previousScale=scale;
+    }
     beatFrame=requestAnimationFrame(animateBeat);
   }
   beatFrame=requestAnimationFrame(animateBeat);
 }
+
+new IntersectionObserver(([entry])=>{
+  logoVisible=entry.isIntersecting;
+  if(!logoVisible) stopBeatVisual();
+  else if(!audio.paused && !audio.ended && audio.readyState>=3) startBeatVisual();
+}).observe(heroLogo);
 
 reducedMotion.addEventListener('change',()=>{
   if(reducedMotion.matches) stopBeatVisual();
@@ -386,7 +402,7 @@ function formatTime(value){
 
 function updateState(){
   const playing=!audio.paused;
-  player.classList.toggle('paused',!playing);
+  topPlayer.classList.toggle('paused',!playing);
   toggles.forEach(button=>{
     button.textContent=playing?'Ⅱ':'▶';
     button.setAttribute('aria-label',playing?'Pause':'Play');
@@ -398,7 +414,7 @@ function loadTrack(index,autoplay=false){
   audio.src=tracks[currentTrack].src;
   setVisual();
   trackName.textContent=tracks[currentTrack].name;
-  progressFill.style.width='0%';
+  progressFill.style.transform='scaleX(0)';
   timeDisplay.textContent='0:00 / 0:00';
   player.querySelector('.window-head strong').textContent=tracks[currentTrack].name+' — ilySoul';
   if(autoplay) playTrack();
@@ -454,8 +470,10 @@ audio.addEventListener('loadedmetadata',()=>{
 });
 
 audio.addEventListener('timeupdate',()=>{
-  progressFill.style.width=(audio.currentTime/audio.duration*100)+'%';
-  timeDisplay.textContent=formatTime(audio.currentTime)+' / '+formatTime(audio.duration);
+  if(!Number.isFinite(audio.duration) || audio.duration<=0) return;
+  progressFill.style.transform=`scaleX(${audio.currentTime/audio.duration})`;
+  const label=formatTime(audio.currentTime)+' / '+formatTime(audio.duration);
+  if(timeDisplay.textContent!==label) timeDisplay.textContent=label;
 });
 
 progress.addEventListener('click',event=>{
