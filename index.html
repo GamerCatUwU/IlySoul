@@ -209,9 +209,8 @@ function startVisual(){
   if(!track.videoId)return;
   visualImage.style.display='none';
   visualFrame.style.display='block';
-  visualFrame.src='https://www.youtube-nocookie.com/embed/'+track.videoId+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+track.videoId+'&playsinline=1&modestbranding=1&rel=0';
+  visualFrame.src='https://www.youtube-nocookie.com/embed/'+track.videoId+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+track.videoId+'&playsinline=1&modestbranding=1&rel=0&enablejsapi=1';
 }
-
 function pauseVisual(){
   if(visualFrame.contentWindow){
     visualFrame.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');
