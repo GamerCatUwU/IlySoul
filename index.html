@@ -186,10 +186,12 @@ const progressFill=progress.querySelector('.progress-fill');
 const timeDisplay=progress.nextElementSibling;
 const controls=document.querySelector('.controls-row');
 const buttons=controls.querySelectorAll('button');
+const visualFrame=document.getElementById('visualFrame');
+const visualImage=document.getElementById('visualImage');
 const tracks=[
-  {name:'Hinata',src:'music/Hinata.mp3'},
-  {name:'Get Back!',src:'music/Get%20Back!.mp3'},
-  {name:'Nasty!',src:'music/Nasty!.mp3'}
+  {name:'Hinata',src:'music/Hinata.mp3',videoId:'oMV-YcEU9NQ'},
+  {name:'Get Back!',src:'music/Get%20Back!.mp3',videoId:'-76ZZVaJGvw'},
+  {name:'Nasty!',src:'music/Nasty!.mp3',videoId:null,artId:'uS2tCcRcJ5E'}
 ];
 let currentTrack=0;
 let shuffle=false;
