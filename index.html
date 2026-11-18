@@ -176,26 +176,30 @@ main{min-height:1800px}}
 }
 
 .hero-art:before{
+.hero-art:before{
   content:"";
   position:absolute;
-  left:-8%;
-  top:8%;
-  width:58%;
-  height:78%;
+  left:5%;
+  top:7%;
+  width:65%;
+  height:65%;
   z-index:0;
-  opacity:.72;
+  opacity:.25;
   background:
-    repeating-linear-gradient(165deg,transparent 0 13px,rgba(255,255,255,.75) 14px,transparent 17px),
-    radial-gradient(ellipse at 75% 45%,rgba(255,255,255,.95),rgba(210,195,215,.45) 30%,transparent 72%);
-  clip-path:polygon(0 0,100% 22%,85% 34%,100% 43%,79% 48%,94% 59%,69% 61%,80% 75%,53% 69%,58% 91%,35% 76%,18% 100%,18% 68%,0 55%);
-  filter:blur(1px);
-  transform:rotate(-12deg);
-  animation:wingFloat 9s ease-in-out infinite;
+    repeating-linear-gradient(150deg,transparent 0 18px,rgba(255,240,250,.3) 19px 20px,transparent 21px 31px),
+    radial-gradient(ellipse at 65% 40%,rgba(255,240,250,.7),rgba(190,160,190,.25) 45%,transparent 75%);
+  clip-path:polygon(0 55%,15% 37%,35% 23%,55% 15%,77% 17%,100% 32%,84% 40%,96% 50%,78% 52%,90% 64%,69% 62%,78% 76%,56% 68%,58% 86%,38% 71%,29% 87%,17% 68%,5% 76%);
+  filter:blur(2px);
+  transform:rotate(-9deg);
+  animation:wingFloat 12s ease-in-out infinite;
   pointer-events:none;
 }
 @keyframes wingFloat{
-  0%,100%{transform:rotate(-12deg) translateY(0)}
-  50%{transform:rotate(-10deg) translateY(-9px)}
+  0%,100%{transform:rotate(-9deg) translateY(0)}
+  50%{transform:rotate(-7deg) translateY(-6px)}
+}
+@media(max-width:620px){
+  .hero-art:before{display:none}
 }
 </style>
 </head>
