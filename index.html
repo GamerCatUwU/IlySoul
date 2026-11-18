@@ -298,7 +298,7 @@ buttons[4].addEventListener('click',()=>{
   buttons[4].style.opacity=repeat?'1':'.55';
 });
 
-audio.addEventListener('play',()=>{updateState();startVisual();});
+audio.addEventListener('play',()=>{updateState();startVisual();startBeatVisual();});;
 audio.addEventListener('pause',()=>{updateState();pauseVisual();});
 audio.addEventListener('ended',()=>{
   if(!repeat) nextTrack();
